@@ -1,35 +1,62 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient("https://bwswrhmmmiqihdwgjoid.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ3c3dyaG1tbWlxaWhkd2dqb2lkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAwMDQ4NzEsImV4cCI6MjA1NTU4MDg3MX0.lfDLhSHAJ0yvNip84VS-ko45kUAZuGUgXhzgwpBwXlM");
 
 function App() {
-  const [count, setCount] = useState(0)
-
-  return (
-    <>
+    const [appIds, setAppIds] = useState([]);
+    const [topApps, setTopApps] = useState([]);
+  
+    // Fetch all app_ids
+    useEffect(() => {
+      async function getAppIds() {
+        const { data, error } = await supabase.from("appid_table").select("app_id");
+  
+        if (error) {
+          console.error("Error fetching app_ids:", error);
+        } else {
+          setAppIds(data || []); // Ensure no null values
+        }
+      }
+  
+      getAppIds();
+      getTopApps(); // Fetch first 10 apps on mount
+    }, []);
+  
+    // Fetch the first 10 apps with their data
+    async function getTopApps() {
+      const { data, error } = await supabase
+        .from("appid_table")
+        .select("*") // Select all columns
+        .limit(10);  // Limit to first 10 rows
+  
+      if (error) {
+        console.error("Error fetching top apps:", error);
+      } else {
+        setTopApps(data || []);
+      }
+    }
+  
+    return (
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        {/* uncomment this if you want to see the list of app id */}
+        {/* <h1>App IDs</h1>
+        <ul>
+          {appIds.map((item) => (
+            <li key={item.app_id}>{item.app_id}</li>
+          ))}
+        </ul> */}
+  
+        <h1>Top 10 Apps</h1>
+        <ul>
+          {topApps.map((app) => (
+            <li key={app.app_id}>
+              <strong>ID:</strong> {app.app_id} - <strong>Name:</strong> {app.app_name || "Unnamed App"}
+            </li>
+          ))}
+        </ul>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
-
-export default App
+    );
+  }
+  
+  export default App;
