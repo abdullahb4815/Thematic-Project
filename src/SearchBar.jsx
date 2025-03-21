@@ -1,8 +1,8 @@
 import React, {useState}    from 'react';
-import './Search bar.css';
+import './SearchBar.css';
  
 
-const SearchBar = ({ data, onSearch}) => {   
+export default function SearchBar  ({ data, onSearch})  {   
     const {searchTerm, setSearchTerm} = useState('');
 
     const handleSearch = (event) => { 
@@ -18,7 +18,9 @@ const SearchBar = ({ data, onSearch}) => {
 
     return (
         <div className="search-container">
-            <i className="fas fa-bars menu-icon"></i>
+        <span class="material-symbols-outlined">
+search
+</span>
             <div className="search-wrapper">
             <input
             type="text"
@@ -33,5 +35,5 @@ const SearchBar = ({ data, onSearch}) => {
     );
 };
 
-export default SearchBar;
+
 

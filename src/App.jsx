@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@supabase/supabase-js";
+import SearchBar from "./SearchBar";
+
 
 const supabase = createClient("https://bwswrhmmmiqihdwgjoid.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJ3c3dyaG1tbWlxaWhkd2dqb2lkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDAwMDQ4NzEsImV4cCI6MjA1NTU4MDg3MX0.lfDLhSHAJ0yvNip84VS-ko45kUAZuGUgXhzgwpBwXlM");
 
@@ -46,7 +48,7 @@ function App() {
             <li key={item.app_id}>{item.app_id}</li>
           ))}
         </ul> */}
-  
+        <SearchBar></SearchBar>
         <h1>Top 10 Apps</h1>
         <ul>
           {topApps.map((app) => (
