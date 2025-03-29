@@ -39,3 +39,20 @@ export async function getAppRange() {
 
   
 }
+
+
+export async function searchApps(searchTerm) {
+  const { data, error } = await supabase
+    .from("appid_table")
+    .select("app_id, app_name, genre_table(genre_type)")
+    .ilike("app_name", `%${searchTerm}%`) // This checks for `app_name`
+    .ilike("genre_table.genre_type", `%${searchTerm}%`) // This checks for `genre_type`
+    .limit(20);
+
+  if (error) {
+    console.error("Error searching apps:", error);
+    return [];
+  }
+
+  return data || [];
+}

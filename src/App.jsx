@@ -1,39 +1,41 @@
-import { useEffect, useState } from "react";
+
 
 import SearchBar from "./Components/SearchBar";
-import {getTopApps} from "./FunctionsSQL/FunctionsSql";
+
+// Commented out during testing and developmment
+// import {getTopApps} from "./FunctionsSQL/FunctionsSql";
+// import { useEffect, useState } from "react";
 
 function App() {
   
-  const [topApps, setTopApps] = useState([]);
+  // only here for reference
+  // const [topApps, setTopApps] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const apps = await getTopApps();
-      setTopApps(apps);
-      console.log(apps);
-      setTopApps(apps);
-    };
-    fetchData();
-    
-    
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const apps = await getTopApps();
+  //     setTopApps(apps);
+  //     console.log(apps);
+  //     setTopApps(apps);
+  //   };
+  //   fetchData();
+  // }, []);
 
   
   return (
     <div> 
       
-      <div className="SearchBar_Container">
+      <div className="SearchBar-Container">
         <SearchBar/>
       </div>
              
-      <ul>
+      {/* <ul>
         {topApps.map((app) => (
           <li key={app.app_id}>
             <strong>ID:</strong> {app.app_id} - <strong>Name:</strong> {app.app_name || "Unnamed App"}
           </li>
         ))}
-      </ul>
+      </ul> */}
 
       
     </div>
