@@ -23,9 +23,7 @@ export async function getTopApps() {
 }
 
 
-
 export async function getAppRange() {
-  const [topApps, setTopApps] = useState([]);
   const { data, error } = await supabase
     .from("appid_table")
     .select("*") // Select all columns
@@ -34,9 +32,10 @@ export async function getAppRange() {
 
   if (error) {
     console.error("Error fetching top apps:", error);
+    //TODO: Throw error
   } else {
-    setTopApps(data || []);
+    return(data || [])
   }
 
-  return (topApps);
+  
 }
