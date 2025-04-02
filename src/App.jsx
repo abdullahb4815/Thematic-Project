@@ -1,5 +1,5 @@
-
-
+import {ThemeProvider} from './ThemeContext';
+import ThemeToggle from './Components/ThemeToggle';
 import SearchBar from "./Components/SearchBar";
 
 // Commented out during testing and developmment
@@ -7,6 +7,17 @@ import SearchBar from "./Components/SearchBar";
 // import { useEffect, useState } from "react";
 
 function App() {
+  return (
+    <ThemeProvider>
+      <div>
+        <ThemeToggle />
+        <div className="SearchBar-Container">
+          <SearchBar/>
+        </div>
+      </div>
+    </ThemeProvider>
+  );
+}
   
   // only here for reference
   // const [topApps, setTopApps] = useState([]);
@@ -21,25 +32,15 @@ function App() {
   //   fetchData();
   // }, []);
 
-  
-  return (
-    <div> 
-      
-      <div className="SearchBar-Container">
-        <SearchBar/>
-      </div>
-             
-      {/* <ul>
+      /* <ul>
         {topApps.map((app) => (
           <li key={app.app_id}>
             <strong>ID:</strong> {app.app_id} - <strong>Name:</strong> {app.app_name || "Unnamed App"}
           </li>
         ))}
-      </ul> */}
+      </ul> */
 
       
-    </div>
-  );
-}
-  
+
+      
 export default App;
