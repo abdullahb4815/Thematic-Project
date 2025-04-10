@@ -1,18 +1,25 @@
 import {ThemeProvider} from './ThemeContext';
 import ThemeToggle from './Components/ThemeToggle';
 import SearchBar from "./Components/SearchBar";
+import PriceRangeSlider from './Components/Slider';
 
 // Commented out during testing and developmment
 // import {getTopApps} from "./FunctionsSQL/FunctionsSql";
 // import { useEffect, useState } from "react";
 
 function App() {
+  const handlePriceChange = (range) => {
+    console.log('Selected Price Range:', range);
+  };
   return (
     <ThemeProvider>
       <div>
         <ThemeToggle />
         <div className="SearchBar-Container">
           <SearchBar/>
+        </div>
+        <div className="Slider-Container">
+          <PriceRangeSlider min={0} max={400} onChange={handlePriceChange} />
         </div>
       </div>
     </ThemeProvider>
