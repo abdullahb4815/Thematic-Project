@@ -87,11 +87,11 @@ export default function SearchBar  (/*{ data, onSearch}*/)  {
                             <tr className='row_data' key={app.app_id}>
                                 <td>{app.app_id}</td>
                                 <td>{app.app_name}</td>
-                                <td>{app.genre_table?.genre_type}</td>
+                                <td>{app.genre_type}</td>
                                 <td>{app.user_rating}</td>
                                 <td>{app.download_count}</td>
                                 <td>{app.price}</td>
-                                <td>{app.currency_table?.currency_type}</td>
+                                <td>{app.currency_type}</td>
                             </tr>
                             
                         ))}

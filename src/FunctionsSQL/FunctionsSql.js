@@ -45,11 +45,10 @@ export async function searchApps(searchTerm, offSetInt) {
   let realOffsetInt = 0;
   if (Number.isInteger(offSetInt)){realOffsetInt=offSetInt;};
   const { data, error } = await supabase
-    .from("appid_table")
-    .select("app_id, app_name, genre_table(genre_type), download_count, user_rating, price, currency_table(currency_type)")
-    .ilike("app_name", `%${searchTerm}%`) // This checks for `app_name`
-    .ilike("genre_table.genre_type", `%${searchTerm}%`) // This checks for `genre_type`
-    .range(realOffsetInt, realOffsetInt+20)
+    .from("appid_with_genre")
+    .select("*")
+    .or(`app_name.ilike.%${searchTerm}%,genre_type.ilike.%${searchTerm}%`)
+    .range(realOffsetInt, realOffsetInt + 20);
 
   if (error) {
     console.error("Error searching apps:", error);
