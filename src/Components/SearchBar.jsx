@@ -24,6 +24,10 @@ export default function SearchBar(/*{ data, onSearch}*/) {
 
     }
 
+    const numberWithCommas = (x) => {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
     const [searchedApps, setSearchedApps] = useState([]);
     const [offSetInt, setOffSet] = useState(0);
 
@@ -61,7 +65,6 @@ export default function SearchBar(/*{ data, onSearch}*/) {
                     <table>
                         <thead>
                             <tr className='row_header'>
-                                <th>ID</th>
                                 <th>Name</th>
                                 <th>Genre</th>
                                 <th>Rating</th>
@@ -74,18 +77,19 @@ export default function SearchBar(/*{ data, onSearch}*/) {
                         <tbody className='row_data'>
                             {searchedApps.map(app => (
                                 <tr className='row_data' key={app.app_id}>
-                                    <td>{app.app_id}</td>
                                     <td>{app.app_name}</td>
                                     <td>{app.genre_type}</td>
                                     <td>{app.user_rating}</td>
-                                    <td>{app.download_count}</td>
-                                    <td>{app.price}</td>
+                                    <td>{numberWithCommas(app.download_count)}</td>
+                                    <td>{app.price || "Free"}</td>
                                     <td>{app.currency_type}</td>
                                 </tr>
-
                             ))}
                         </tbody>
                     </table>
+                    <br />
+                    <br />
+                        
 
                     <button id='getMoreButton' onClick={handleGetMore}> See more -{">"} </button>
                 </div>
