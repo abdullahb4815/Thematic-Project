@@ -2,21 +2,37 @@ import {ThemeProvider} from './ThemeContext';
 import ThemeToggle from './Components/ThemeToggle';
 import SearchBar from "./Components/SearchBar";
 import PriceRangeSlider from './Components/Slider';
+import { useState } from 'react';
 
 // Commented out during testing and developmment
 // import {getTopApps} from "./FunctionsSQL/FunctionsSql";
 // import { useEffect, useState } from "react";
 
+// updated app so components have better "communication"
+// they can pass parameters and data into each other now
 function App() {
+  
+  const [searchTerm, setSearchTerm] = useState('');
+  const [offset, setOffset] = useState(0);
+  const [priceRange, setPriceRange] = useState([0, 400]);
+
   const handlePriceChange = (range) => {
-    console.log('Selected Price Range:', range);
+    setPriceRange(range);
+    setOffset(0); // reset offset when changing filter - effectively returning first page results
   };
+
   return (
     <ThemeProvider>
       <div>
         <ThemeToggle />
         <div className="SearchBar-Container">
-          <SearchBar/>
+          <SearchBar
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
+          offset={offset}
+          setOffset={setOffset}
+          priceRange={priceRange}
+        />
         </div>
         <div className="Slider-Container">
           <PriceRangeSlider min={0} max={400} onChange={handlePriceChange} />

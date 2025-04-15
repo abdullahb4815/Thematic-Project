@@ -3,42 +3,35 @@ import './SearchBar.css';
 import { searchApps } from "../FunctionsSQL/FunctionsSql";
 
 
-export default function SearchBar(/*{ data, onSearch}*/) {
-    const [searchTerm, setSearchTerm] = useState('');
+export default function SearchBar({ searchTerm, setSearchTerm, offset, setOffset, priceRange }) {
+    const [searchedApps, setSearchedApps] = useState([]);
+    // passes in price range as a parameter now which is retrieved from the slider function 
+    useEffect(() => {
+        const fetchData = async () => {
+            const apps = await searchApps(searchTerm, offset, priceRange);
+            setSearchedApps(apps);
+        };
+        fetchData();
+    }, [searchTerm, offset, priceRange]);
 
     const handleSearch = (event) => {
         const value = event.target.value;
-        setOffSet(0);
+        setOffset(0);
         setSearchTerm(value);
-
-        // commented out as this is used to handle preloadedd data not when dynamically loading data
-        // const filteredResults = data.filter(item =>
-        //     item.app_name.toLowerCase().includes(value.toLowerCase())
-        // );
-
-        // onSearch(filteredResults); 
     };
 
     const handleGetMore = () => {
-        setOffSet(prevOffset => prevOffset + 20);
+        setOffset(prev => prev + 20);
+    };
 
-    }
+
 
     const numberWithCommas = (x) => {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
-    const [searchedApps, setSearchedApps] = useState([]);
-    const [offSetInt, setOffSet] = useState(0);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            const apps = await searchApps(searchTerm, offSetInt);
-            console.log(apps);
-            setSearchedApps(apps);
-        };
-        fetchData();
-    }, [searchTerm, offSetInt]);
+   
 
     if (searchedApps.length > 0) {
         return (
