@@ -1,9 +1,9 @@
 .slider-container {
     width: 250px;
     padding: 15px;
-    background: #B3E5FC;  /* Light blue background */
+   
     border-radius: 4px;
-    border: 1px solid #90CAF9;
+
 }
 
 .filter-header {
@@ -98,3 +98,46 @@
     color: #333;
     margin-bottom: 15px;
 }
+
+
+.sidebar {
+    background: #B3E5FC;  /* Light blue background */
+    border: 1px solid #90CAF9;
+    transition: transform 0.3s ease; /* Smooth slide animation */
+    padding: 20px;
+    position: relative;
+    transform: translateX(0); /* Initially visible */
+  }
+  
+  .sidebar.closed {
+    transform: translateX(-100%); /* Moves sidebar completely off-screen */
+  }
+  
+  .sidebar .content {
+    display: block;
+  }
+  
+  .sidebar.closed .content {
+    display: none;
+  }
+
+  .toggle-btn {
+    background: #0788c4;  /* Light blue background */
+    border: 10px solid #90CAF9;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 5px;
+    margin: 0;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Smooth slide animation */
+    margin-bottom: 0px;
+    width: 30%;
+    text-align: center;
+    
+  }
+
+
+  .toggle-btn.closed {
+    transition: transform 0.3s ease; /* Smooth slide animation */
+    transform: translateX(-55%); /* Moves sidebar completely off-screen */
+  }

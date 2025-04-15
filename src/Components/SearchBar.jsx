@@ -117,7 +117,7 @@ export default function SearchBar(/*{ data, onSearch}*/) {
                     </div>
                 </div>
 
-                <h3>No results found.</h3>
+                <h3 id='no_results_banner'>No results found.</h3>
 
             </div>
         );
