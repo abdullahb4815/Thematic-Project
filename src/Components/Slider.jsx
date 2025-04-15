@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Slider.css';
 
+
 const PriceRangeSlider = ({ min = 0, max = 400, onChange }) => {
     const [minValue, setMinValue] = useState(min);
     const [maxValue, setMaxValue] = useState(max);

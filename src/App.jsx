@@ -35,7 +35,7 @@ function App() {
         />
         </div>
         <div className="Slider-Container">
-          <PriceRangeSlider min={0} max={400} onChange={handlePriceChange} />
+          <PriceRangeSlider min={0} max={350} onChange={handlePriceChange} />
         </div>
       </div>
     </ThemeProvider>
