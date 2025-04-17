@@ -38,7 +38,7 @@ export default function SearchBar({ searchTerm, setSearchTerm, offset, setOffset
             <div className='main-container'>
                 <div className="search-container">
 
-                    <span class="material-symbols-outlined">
+                    <span className="material-symbols-outlined">
                         search
                     </span>
 
@@ -94,7 +94,7 @@ export default function SearchBar({ searchTerm, setSearchTerm, offset, setOffset
             <div className='main-container'>
                 <div className="search-container">
 
-                    <span class="material-symbols-outlined">
+                    <span className="material-symbols-outlined">
                         search
                     </span>
 
