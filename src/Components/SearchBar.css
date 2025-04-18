@@ -2,7 +2,7 @@
     width: 90vw;
     
     margin: auto;
-    position: absolute;
+    position: relative;
     top: 100px; bottom: 0; left: 0; right: 0;
 }
 
@@ -69,7 +69,7 @@
 }
 
 .search-icon {
-    position: absolute;
+    position: relative;
     right: 15px;
     color: #666;
     cursor: pointer;
@@ -91,6 +91,7 @@ table {
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   background-color: #080808;
+  position: relative;
   margin: 20px auto;
   
 

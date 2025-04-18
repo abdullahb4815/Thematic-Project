@@ -3,6 +3,7 @@ import ThemeToggle from './Components/ThemeToggle';
 import SearchBar from "./Components/SearchBar";
 import PriceRangeSlider from './Components/Slider';
 import { useState } from 'react';
+import LandingPage from './Components/LandingPage';
 
 // Commented out during testing and developmment
 // import {getTopApps} from "./FunctionsSQL/FunctionsSql";
@@ -23,19 +24,27 @@ function App() {
 
   return (
     <ThemeProvider>
+       
+      <LandingPage/>
+      
       <div>
+     
         <ThemeToggle />
-        <div className="SearchBar-Container">
-          <SearchBar
-          searchTerm={searchTerm}
-          setSearchTerm={setSearchTerm}
-          offset={offset}
-          setOffset={setOffset}
-          priceRange={priceRange}
-        />
-        </div>
-        <div className="Slider-Container">
-          <PriceRangeSlider min={0} max={350} onChange={handlePriceChange} />
+        
+
+        <div className='row-container'>
+          <div className="SearchBar-Container">
+            <SearchBar
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
+            offset={offset}
+            setOffset={setOffset}
+            priceRange={priceRange}
+          />
+          </div>
+          <div className="Slider-Container">
+            <PriceRangeSlider min={0} max={350} onChange={handlePriceChange} />
+          </div>
         </div>
       </div>
     </ThemeProvider>

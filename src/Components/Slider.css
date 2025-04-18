@@ -1,7 +1,8 @@
 .slider-container {
     width: 250px;
     padding: 15px;
-   
+    position: relative;
+    transform: translateY(-80vh);
     border-radius: 4px;
 
 }
