@@ -30,7 +30,15 @@ export default function SearchBar({ searchTerm, setSearchTerm, offset, setOffset
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 
+    const priceWithCurrency = (price, currency) => {
+        const currencies = {USD: "$", GBP: "£"} // Can add more currencies in future.
 
+        if (price > 0) {
+            return currencies[currency] + price;
+        } else {
+            return "Free";
+        } 
+    }
    
 
     if (searchedApps.length > 0) {
@@ -63,7 +71,6 @@ export default function SearchBar({ searchTerm, setSearchTerm, offset, setOffset
                                 <th>Rating</th>
                                 <th>Download Count</th>
                                 <th>Price</th>
-                                <th>Currency</th>
                             </tr>
                         </thead>
 
@@ -74,8 +81,7 @@ export default function SearchBar({ searchTerm, setSearchTerm, offset, setOffset
                                     <td>{app.genre_type}</td>
                                     <td>{app.user_rating}</td>
                                     <td>{numberWithCommas(app.download_count)}</td>
-                                    <td>{app.price || "Free"}</td>
-                                    <td>{app.currency_type}</td>
+                                    <td>{priceWithCurrency(app.price, app.currency_type)}</td>
                                 </tr>
                             ))}
                         </tbody>
