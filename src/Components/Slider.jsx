@@ -43,15 +43,15 @@ const PriceRangeSlider = ({ min = 0, max = 400, onChange }) => {
                                 <div className="slider-inputs">
                                     <input
                                         type="range"
-                                        min={min}
-                                        max={max}
+                                        min={0}
+                                        max={349}
                                         value={minValue}
                                         onChange={handleMinChange}
                                         className="slider lower"
                                     />
                                     <input
                                         type="range"
-                                        min={min}
+                                        min={1}
                                         max={max}
                                         value={maxValue}
                                         onChange={handleMaxChange}

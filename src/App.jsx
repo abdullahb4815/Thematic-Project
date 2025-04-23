@@ -15,12 +15,13 @@ function App() {
   
   const [searchTerm, setSearchTerm] = useState('');
   const [offset, setOffset] = useState(0);
-  const [priceRange, setPriceRange] = useState([0, 400]);
-
+  const [priceRange, setPriceRange] = useState([0, 350]);
+  // const [dataFrame, setDataFrame] = useState([0]);
   const handlePriceChange = (range) => {
     setPriceRange(range);
     setOffset(0); // reset offset when changing filter - effectively returning first page results
   };
+
 
   return (
     <ThemeProvider>
@@ -31,20 +32,29 @@ function App() {
      
         <ThemeToggle />
         
+        
 
         <div className='row-container'>
+
           <div className="SearchBar-Container">
-            <SearchBar
-            searchTerm={searchTerm}
-            setSearchTerm={setSearchTerm}
-            offset={offset}
-            setOffset={setOffset}
-            priceRange={priceRange}
-          />
+
+            <div className="Slider-Container">
+              <PriceRangeSlider min={0} max={350} onChange={handlePriceChange} />
+            </div>
+
+
+            <div className='Search-Container'>
+              <SearchBar
+              searchTerm={searchTerm}
+              setSearchTerm={setSearchTerm}
+              offset={offset}
+              setOffset={setOffset}
+              priceRange={priceRange}
+
+              />
+            </div>
           </div>
-          <div className="Slider-Container">
-            <PriceRangeSlider min={0} max={350} onChange={handlePriceChange} />
-          </div>
+          
         </div>
       </div>
     </ThemeProvider>

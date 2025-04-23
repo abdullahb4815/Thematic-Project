@@ -62,7 +62,7 @@ export default function SearchBar({ searchTerm, setSearchTerm, offset, setOffset
                     </div>
                 </div>
 
-                <div className='results-container'>
+              
                     <table>
                         <thead>
                             <tr className='row_header'>
@@ -92,7 +92,7 @@ export default function SearchBar({ searchTerm, setSearchTerm, offset, setOffset
 
                     <button id='getMoreButton' onClick={handleGetMore}> See more -{">"} </button>
                 </div>
-            </div>
+            
         );
 
     } else {

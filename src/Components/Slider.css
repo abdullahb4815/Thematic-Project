@@ -1,9 +1,11 @@
 .slider-container {
     width: 250px;
+    height: 100px;
     padding: 15px;
-    position: relative;
-    transform: translateY(-80vh);
+    position: absolute;
+    bottom: 35%;
     border-radius: 4px;
+    z-index: 10;
 
 }
 

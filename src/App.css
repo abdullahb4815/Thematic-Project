@@ -10,6 +10,17 @@
   display: flex;
 }
 
+
+.Slider-Container{
+  z-index: 10;
+}
+
+
+
+.Search-Container{
+  z-index: -10;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
