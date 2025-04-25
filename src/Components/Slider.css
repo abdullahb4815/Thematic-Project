@@ -3,7 +3,7 @@
     height: 100px;
     padding: 15px;
     position: absolute;
-    bottom: 35%;
+    bottom: -22%;
     border-radius: 4px;
     z-index: 10;
 
@@ -103,8 +103,9 @@
 }
 
 
+
 .sidebar {
-    background: #B3E5FC;  /* Light blue background */
+    background: #8ddbff;  /* Light blue background */
     border: 1px solid #90CAF9;
     transition: transform 0.3s ease; /* Smooth slide animation */
     padding: 20px;
@@ -125,7 +126,7 @@
   }
 
   .toggle-btn {
-    background: #0788c4;  /* Light blue background */
+    background: linear-gradient(#0075F2, #00F2F2);  /* Light blue background */
     border: 10px solid #90CAF9;
     color: rgb(0, 0, 0);
     border: none;
