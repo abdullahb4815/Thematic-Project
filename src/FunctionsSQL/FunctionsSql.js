@@ -41,16 +41,20 @@ export async function getAppRange() {
 }
 
 // upadated this function to accept price range
-export async function searchApps(searchTerm, offSetInt = 0, priceRange = [0, 400]) {
+export async function searchApps(searchTerm, offSetInt = 0, priceRange = [0, 400], selectedGenre = '') {
   const [minPrice, maxPrice] = priceRange;
-
-  const { data, error } = await supabase
+  let query = supabase
     .from("appid_with_genre")
     .select("*")
     .or(`app_name.ilike.%${searchTerm}%,genre_type.ilike.%${searchTerm}%`)
     .gte('price', minPrice)
-    .lte('price', maxPrice)
-    .range(offSetInt, offSetInt + 20);
+    .lte('price', maxPrice);
+
+  if (selectedGenre) {
+    query = query.eq('genre_type', selectedGenre);
+  }
+
+  const { data, error } = await query.range(offSetInt, offSetInt + 20);
 
   if (error) {
     console.error("Error searching apps:", error);

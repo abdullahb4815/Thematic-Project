@@ -16,12 +16,17 @@ function App() {
   const [searchTerm, setSearchTerm] = useState('');
   const [offset, setOffset] = useState(0);
   const [priceRange, setPriceRange] = useState([0, 350]);
+  const [selectedGenre, setSelectedGenre] = useState('');
   // const [dataFrame, setDataFrame] = useState([0]);
   const handlePriceChange = (range) => {
     setPriceRange(range);
     setOffset(0); // reset offset when changing filter - effectively returning first page results
   };
 
+  const handleGenreChange = (genre) => {
+    setSelectedGenre(genre);
+    setOffset(0);
+  };
 
   return (
     <ThemeProvider>
@@ -39,7 +44,12 @@ function App() {
           <div className="SearchBar-Container">
 
             <div className="Slider-Container">
-              <PriceRangeSlider min={0} max={350} onChange={handlePriceChange} />
+              <PriceRangeSlider 
+                min={0} 
+                max={350} 
+                onChange={handlePriceChange}
+                onGenreChange={handleGenreChange}
+              />
             </div>
 
 
@@ -50,7 +60,7 @@ function App() {
               offset={offset}
               setOffset={setOffset}
               priceRange={priceRange}
-
+              selectedGenre={selectedGenre}
               />
             </div>
           </div>

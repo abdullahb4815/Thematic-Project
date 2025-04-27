@@ -3,16 +3,16 @@ import './SearchBar.css';
 import { searchApps } from "../FunctionsSQL/FunctionsSql";
 
 
-export default function SearchBar({ searchTerm, setSearchTerm, offset, setOffset, priceRange }) {
+export default function SearchBar({ searchTerm, setSearchTerm, offset, setOffset, priceRange, selectedGenre }) {
     const [searchedApps, setSearchedApps] = useState([]);
     // passes in price range as a parameter now which is retrieved from the slider function 
     useEffect(() => {
         const fetchData = async () => {
-            const apps = await searchApps(searchTerm, offset, priceRange);
+            const apps = await searchApps(searchTerm, offset, priceRange, selectedGenre);
             setSearchedApps(apps);
         };
         fetchData();
-    }, [searchTerm, offset, priceRange]);
+    }, [searchTerm, offset, priceRange, selectedGenre]);
 
     const handleSearch = (event) => {
         const value = event.target.value;

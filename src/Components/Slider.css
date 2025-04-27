@@ -1,12 +1,12 @@
 .slider-container {
     width: 250px;
-    height: 100px;
+    height: auto;
     padding: 15px;
     position: absolute;
-    bottom: -22%;
+    top: 160vh;
+    left: 0;
     border-radius: 4px;
     z-index: 10;
-
 }
 
 .filter-header {
@@ -102,30 +102,57 @@
     margin-bottom: 15px;
 }
 
+.genre-section {
+    margin-top: 20px;
+}
 
+.genre-header {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.genre-select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+}
+
+.genre-select:focus {
+    outline: none;
+    border-color: #2196F3;
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+}
 
 .sidebar {
-    background: #8ddbff;  /* Light blue background */
+    background: #8ddbff;
     border: 1px solid #90CAF9;
-    transition: transform 0.3s ease; /* Smooth slide animation */
+    transition: transform 0.3s ease;
     padding: 20px;
     position: relative;
-    transform: translateX(0); /* Initially visible */
-  }
-  
-  .sidebar.closed {
-    transform: translateX(-100%); /* Moves sidebar completely off-screen */
-  }
-  
-  .sidebar .content {
-    display: block;
-  }
-  
-  .sidebar.closed .content {
-    display: none;
-  }
+    transform: translateX(0);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 
-  .toggle-btn {
+.sidebar.closed {
+    transform: translateX(-100%); /* Moves sidebar completely off-screen */
+}
+
+.sidebar .content {
+    display: block;
+}
+
+.sidebar.closed .content {
+    display: none;
+}
+
+.toggle-btn {
     background: linear-gradient(#0075F2, #00F2F2);  /* Light blue background */
     border: 10px solid #90CAF9;
     color: rgb(0, 0, 0);
@@ -138,10 +165,9 @@
     width: 30%;
     text-align: center;
     
-  }
+}
 
-
-  .toggle-btn.closed {
+.toggle-btn.closed {
     transition: transform 0.3s ease; /* Smooth slide animation */
     transform: translateX(-55%); /* Moves sidebar completely off-screen */
-  }
+}

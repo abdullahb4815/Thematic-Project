@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
 import './Slider.css';
 
+const genres = [
+    "Sports", "Finance", "Book", "Entertainment", "Catalogs",
+    "Photo & Video", "Food & Drink", "Medical", "Navigation",
+    "Utilities", "Weather", "Travel", "Shopping", "Music",
+    "News", "Lifestyle", "Productivity", "Social Networking",
+    "Games", "Business", "Health & Fitness", "Education"
+];
 
-const PriceRangeSlider = ({ min = 0, max = 400, onChange }) => {
+const PriceRangeSlider = ({ min = 0, max = 400, onChange, onGenreChange }) => {
     const [minValue, setMinValue] = useState(min);
     const [maxValue, setMaxValue] = useState(max);
+    const [selectedGenre, setSelectedGenre] = useState('');
 
     // variables for the sidebar state
     const [isOpen, setIsOpen] = useState(true);
@@ -23,6 +31,12 @@ const PriceRangeSlider = ({ min = 0, max = 400, onChange }) => {
         const value = Math.max(Number(e.target.value), minValue + 1);
         setMaxValue(value);
         if (onChange) onChange([minValue, value]);
+    };
+
+    const handleGenreChange = (e) => {
+        const genre = e.target.value;
+        setSelectedGenre(genre);
+        if (onGenreChange) onGenreChange(genre);
     };
 
     return (
@@ -58,6 +72,19 @@ const PriceRangeSlider = ({ min = 0, max = 400, onChange }) => {
                                         className="slider"
                                     />
                                 </div>
+                            </div>
+                            <div className="genre-section">
+                                <div className="genre-header">Genre</div>
+                                <select 
+                                    value={selectedGenre} 
+                                    onChange={handleGenreChange}
+                                    className="genre-select"
+                                >
+                                    <option value="">All Genres</option>
+                                    {genres.map((genre) => (
+                                        <option key={genre} value={genre}>{genre}</option>
+                                    ))}
+                                </select>
                             </div>
                 </div>
             
