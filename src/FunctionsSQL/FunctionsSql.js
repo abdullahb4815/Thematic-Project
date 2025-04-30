@@ -61,10 +61,33 @@ export async function searchApps(searchTerm, offSetInt = 0, priceRange = [0, 400
     return [];
   }
 
+  
+
   return data || [];
 }
-// might be dumb
-export async function holdResults(results) {
-  const heldResults = results;
-  return (heldResults)
+
+// gets the app details based on the app name
+export async function getDetails(appName) {
+
+  let query = supabase
+  
+    .from("description_table")
+    .select("*")
+    .ilike(`app_name`,`%${appName}%`)
+
+
+  const { data, error } = await query;
+
+
+  if (error) {
+    console.error("Error searching app description:", error);
+    return [];
+  }
+
+  console.log(data);
+
+
+
+  return data[0].app_desc || [];
+
 }

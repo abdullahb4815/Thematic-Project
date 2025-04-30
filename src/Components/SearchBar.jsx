@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './SearchBar.css';
-import { searchApps } from "../FunctionsSQL/FunctionsSql";
+import { searchApps, getDetails } from "../FunctionsSQL/FunctionsSql";
 
 
 export default function SearchBar({ searchTerm, setSearchTerm, offset, setOffset, priceRange, selectedGenre }) {
     const [searchedApps, setSearchedApps] = useState([]);
+    const [description, setDesc] = useState([]);
+    const [mousePosition, setMousePosition] = useState({ y: 0 });
     // passes in price range as a parameter now which is retrieved from the slider function 
     useEffect(() => {
         const fetchData = async () => {
@@ -39,6 +41,24 @@ export default function SearchBar({ searchTerm, setSearchTerm, offset, setOffset
             return "Free";
         } 
     }
+
+
+    function handleHover(appName) {
+
+        setDesc(getDetails(appName));
+        setMousePosition({
+
+            y: event.clientY,
+          });
+        
+    };
+
+    function handleLeave(){
+        setDesc("");
+    };
+
+
+    
    
 
     if (searchedApps.length > 0) {
@@ -77,7 +97,16 @@ export default function SearchBar({ searchTerm, setSearchTerm, offset, setOffset
                         <tbody className='row_data'>
                             {searchedApps.map(app => (
                                 <tr className='row_data' key={app.app_id}>
-                                    <td>{app.app_name}</td>
+                                    <td>
+                                        <div className='details_div'
+                                            onMouseEnter={() => handleHover(app.app_name)}
+                                            onMouseLeave={() => handleLeave()}
+                                        > 
+                                        {app.app_name}
+
+                                        </div>
+                                        
+                                    </td>
                                     <td>{app.genre_type}</td>
                                     <td>{app.user_rating}</td>
                                     <td>{numberWithCommas(app.download_count)}</td>
@@ -91,7 +120,16 @@ export default function SearchBar({ searchTerm, setSearchTerm, offset, setOffset
                         
 
                     <button id='getMoreButton' onClick={handleGetMore}> See more -{">"} </button>
+
+
+
+                    <div className='description_container' style={{top: mousePosition.y}}>
+                        
+                        {description}   
+                    </div>
                 </div>
+
+
             
         );
 
